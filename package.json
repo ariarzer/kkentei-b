@@ -1,0 +1,17 @@
+{
+  "name": "kkentei",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "test": "exit 0",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
