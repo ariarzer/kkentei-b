@@ -1,11 +1,20 @@
-const sqlite = require('sqlite3');
-const path = require('path');
-const db = new sqlite.Database(path.resolve('./data/kkentei.db'));
+require('dotenv').config();
+const { Pool } = require('pg');
 
-function all(sql, callback) {
-    return db.all(sql, callback);
+const pool = new Pool({
+    connectionString: process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : process.env.DATABASE_URL_LOCAL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+});
+
+async function all(sql) {
+    try {
+        const result = await pool.query(sql);
+        return result.rows;
+    } catch (e) {
+        console.error(e)
+    }
 }
 
 module.exports = {
     all
-}
+};

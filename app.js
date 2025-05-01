@@ -28,9 +28,9 @@ app.use(cors({
 app.use(checkApiToken);
 
 app.get('/', (req, res) => {
-  db.all('SELECT * FROM kanji;', (err, data) => {
+  db.all('SELECT * FROM kanji;').then((data) => {
     res.send(data)
-  });
+  })
 })
 
 app.listen(port);
